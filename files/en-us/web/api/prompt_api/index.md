@@ -26,6 +26,9 @@ Before creating a session, you should call the static {{domxref("LanguageModel.a
 
 A session is created by calling the static {{domxref("LanguageModel.create_static", "create()")}} method. Once you have a session, you can call {{domxref("LanguageModel.append()", "append()")}} to preload content into the session without generating a response, and {{domxref("LanguageModel.prompt()","prompt()")}} or {{domxref("LanguageModel.promptStreaming()", "promptStreaming()")}} to send text or multimodal input and receive the response.
 
+> [!NOTE]
+> If the device can support built-in AI APIs, but the model is not yet downloaded, the user must have meaningfully interacted with your page for your application to start a session with `create()`. Use the `UserActivation.isActive` property to confirm a user has directly interacted with the page since the page finished loading. This can include a tap, click, key press, mousedown, or other sticky activation events.
+
 You can cancel pending operations such as `create()`, `prompt()`, and `append()` using an {{domxref("AbortController")}}.
 
 After a `LanguageModel` instance has been created, you can release its assigned resources and stop any further activity by calling its {{domxref("LanguageModel.destroy()")}} method. You are encouraged to do this after you've finished with the object as it can consume a lot of resources.
